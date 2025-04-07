@@ -79,6 +79,12 @@ inputs:
       Specifies the market (purchasing) option for the instance:
         - 'spot' - Use a spot instance
     required: false
+  launch-template-name:
+    description: 'EC2 launch template name to use instead of manual instance config'
+    required: false
+  launch-template-version:
+    description: 'Version of the launch template to use (default is $Default)'
+    required: false
 
 outputs:
   label:

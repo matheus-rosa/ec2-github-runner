@@ -17,6 +17,8 @@ class Config {
       preRunnerScript: core.getInput('pre-runner-script'),
       quietPeriodSeconds: core.getInput('quiet-period-seconds'),
       marketType: core.getInput('market-type'),
+      launchTemplateName: core.getInput('launch-template-name'),
+      launchTemplateVersion: core.getInput('launch-template-version'),
     };
 
     const tags = JSON.parse(core.getInput('aws-resource-tags'));
