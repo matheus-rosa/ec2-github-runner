@@ -51,11 +51,22 @@ class Config {
     }
 
     if (this.input.mode === 'start') {
-      if (!this.input.ec2ImageId || !this.input.ec2InstanceType || !this.input.subnetId || !this.input.securityGroupId) {
-        throw new Error(`Not all the required inputs are provided for the 'start' mode`);
+      const usingLaunchTemplate = !!this.input.launchTemplateName;
+
+      if (!usingLaunchTemplate) {
+        if (
+            !this.input.ec2ImageId ||
+            !this.input.ec2InstanceType ||
+            !this.input.subnetId ||
+            !this.input.securityGroupId
+        ) {
+          throw new Error(
+              `Not all the required inputs are provided for the 'start' mode without a launch template`
+          );
+        }
       }
 
-      if (this.marketType?.length > 0 && this.input.marketType !== 'spot') {
+      if (this.input.marketType?.length > 0 && this.input.marketType !== 'spot') {
         throw new Error(`Invalid 'market-type' input. Allowed values: spot.`);
       }
     } else if (this.input.mode === 'stop') {
