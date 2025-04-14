@@ -73,8 +73,8 @@ async function startEc2Instance(label, githubRegistrationToken) {
   };
 
   const paramsList = [
-    baseParams,
     { ...baseParams, ...{ InstanceMarketOptions: buildMarketOptions() }},
+    baseParams,
   ];
 
   for (let i = 0; i < paramsList.length; i++) {
